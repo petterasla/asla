@@ -1,11 +1,10 @@
-import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
-import { component } from "vue/types/umd";
+import { createWebHistory, createRouter } from "vue-router";
 import Home from "../views/Home.vue";
+import Wall from "../views/Wall.vue";
+import Keywordtool from "../views/Keywordtool.vue";
+import NotFound from "../views/NotFound.vue";
 
-Vue.use(VueRouter);
-
-const routes: Array<RouteConfig> = [
+const routes: any = [
   {
     path: "/",
     name: "Home",
@@ -14,22 +13,23 @@ const routes: Array<RouteConfig> = [
   {
     path: "/wall",
     name: "Wall",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Wall.vue")
+    component: Wall
+  
   },
   {
     path: "/keywordtool",
     name: "Keywordtool",
-    component: () =>
-      import("../views/Keywordtool.vue")
-  }
+    component: Keywordtool
+  },
+  {
+    path: "/:catchAll(.*)",
+    component: NotFound,
+  },
 ];
 
-const router = new VueRouter({
-  routes
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;

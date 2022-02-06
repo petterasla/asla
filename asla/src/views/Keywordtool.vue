@@ -1,7 +1,7 @@
 <template>
     <div class="keywordtool">
         <h1>Let's make life easier</h1>
-        <keywordInputComponent />
+        <KeywordInputComponent />
     </div>
 </template>
 

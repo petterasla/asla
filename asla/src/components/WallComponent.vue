@@ -14,12 +14,11 @@
 </template>
 
 <script lang="ts">
-    import { Component, Prop, Vue } from "vue-property-decorator";
-
-    @Component
-    export default class WallComponent extends Vue {
+    export default {
+        name: 'WallComponent'
+    }
     
-    data = [
+    const data = [
         {
             "id": 1,
             "header": "Deploying web page on Amazon Lambda",
@@ -39,7 +38,6 @@
             " actually help out. Fun to do something other than just work stuff."
         }
     ]
-}
 </script>
 
 <style scoped>
