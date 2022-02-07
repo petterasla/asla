@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="d in data.slice().reverse()" :key="d.id" >
+        <div v-for="d in posts.slice().reverse()" :key="d.id" >
             <div class="row">    
                 <div class="column"/>
                 <div class="column">
@@ -14,11 +14,20 @@
 </template>
 
 <script lang="ts">
-    export default {
-        name: 'WallComponent'
+import { ref } from 'vue';
+
+export default {
+    name: 'WallComponent',
+    setup() {
+        let posts = ref(postsArray)
+        return {
+            posts
+        }
     }
     
-    const data = [
+}
+    
+    const postsArray = [
         {
             "id": 1,
             "header": "Deploying web page on Amazon Lambda",

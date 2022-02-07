@@ -5,15 +5,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import WallComponent from "@/components/WallComponent.vue";
+import { Options, Vue } from "vue-class-component";
 
-export default {
+@Options({
   components: {
     WallComponent
   }
-};
-
+})
+export default class Wall extends Vue {}
 </script>
 
 <style scoped>
