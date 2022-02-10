@@ -1,5 +1,6 @@
 <template>
     <div class="keyword-result">
+        <h1> 2 </h1>
         <div>
             <label>Filter:</label><input v-model="searchTerm" />
         </div>
@@ -39,8 +40,8 @@ export default {
         data.push({
             keyword: "keyword"+i,
             avgVolume: i*100,
-            cpc: i *3.14,
-            cmp: i * 3.14
+            cpc: (i * 3.14).toFixed(2),
+            cmp: (i * 6.14).toFixed(2)
         });
         }
 
@@ -84,8 +85,8 @@ export default {
                 return table.rows.length;
             }),
             sortable: {
-            order: "avgVolume",
-            sort: "desc",
+                order: "avgVolume",
+                sort: "desc",
             },
         });
 

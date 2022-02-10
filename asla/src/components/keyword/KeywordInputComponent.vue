@@ -1,6 +1,6 @@
 <template>
     <div class="numerator">
-        <h2> 1 </h2>
+        <h1> 1 </h1>
         <input v-model="keyword" placeholder="Insert keyword here">
         <button @click="search">Search</button>
     </div>
