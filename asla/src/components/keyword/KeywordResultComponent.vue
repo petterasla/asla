@@ -44,7 +44,7 @@ export default {
             columns: [
             {
                 label: "Keyword",
-                field: 'string',
+                field: 'keyword',
                 width: "20%",
                 sortable: true,
                 isKey: true,
@@ -68,13 +68,13 @@ export default {
                 sortable: true,
             },
             ],
-            rows: data,
-            //rows: computed(() => {
-            //return data.results.chair.filter(
-            //(x) =>
-            //    x.string.toLowerCase().includes(searchTerm.value.toLowerCase())
-            //);
-            //}),
+            //rows: data,
+            rows: computed(() => {
+            return data.filter(
+            (x) =>
+                x.keyword.toLowerCase().includes(searchTerm.value.toLowerCase())
+            );
+            }),
             totalRecordCount: computed(() => {
                 return table.rows.length;
             }),

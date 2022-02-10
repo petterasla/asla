@@ -1,6 +1,26 @@
 import { createStore } from 'vuex'
 
 const storeObject = {
+    mutations: {
+    
+    },
+    actions: {
+    
+    },
+    getters: {
+        getKeywordResult: function(state: any) {
+            const afterFirstRows = state.keyword_result.results.chair;
+            const firstRow = state.keyword_result.results[""][0];
+            const rows = []
+            rows.push(firstRow);
+            for(let i = 0; i < afterFirstRows.length; i++) {
+                rows.push(afterFirstRows[i])
+            }
+            console.log("Sorting result by volume")
+            rows.sort(compare)
+            return mapKeywordResult(rows)
+        }
+    },
     state: {
         keyword_result: {
             // Copied from example in keywordtool.io
@@ -182,21 +202,7 @@ const storeObject = {
         }
 
       },
-    mutations: {
     
-    },
-    actions: {
-    
-    },
-    getters: {
-        getKeywordResult: function(state: any) {
-            const firstRow = state.keyword_result.results[""][0];
-            const rows = state.keyword_result.results.chair;
-            rows.push(firstRow);
-            rows.sort(compare)
-            return rows;
-        }
-    }
 }
 function compare(a: {volume: number} , b: {volume: number}) {
     if ( a.volume < b.volume ){
@@ -206,6 +212,32 @@ function compare(a: {volume: number} , b: {volume: number}) {
         return -1;
       }
       return 0;
+}
+
+function mapKeywordResult(results: any) {
+    console.log("Mapping result")
+    console.log(results)
+    return results.map(function(result: any) {
+        console.log(result)
+        return {
+            'keyword': result.string,
+            'volume': result.volume,
+            'cpc': result.cpc,
+            'cmp': result.cmp,
+            [result.m1_month + '-' + result.m1_year]: result.m1,
+            [result.m2_month + '-' + result.m2_year]: result.m2,
+            [result.m3_month + '-' + result.m3_year]: result.m3,
+            [result.m4_month + '-' + result.m4_year]: result.m4,
+            [result.m5_month + '-' + result.m5_year]: result.m5,
+            [result.m6_month + '-' + result.m6_year]: result.m6,
+            [result.m7_month + '-' + result.m7_year]: result.m7,
+            [result.m8_month + '-' + result.m8_year]: result.m8,
+            [result.m9_month + '-' + result.m9_year]: result.m9,
+            [result.m10_month + '-' + result.m10_year]: result.m10,
+            [result.m11_month + '-' + result.m11_year]: result.m11,
+            [result.m12_month + '-' + result.m12_year]: result.m12,
+        }
+    })
 }
 
 const store = createStore(storeObject);

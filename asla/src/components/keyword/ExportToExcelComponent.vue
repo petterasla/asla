@@ -16,6 +16,7 @@ export default {
         downloadExcelFile: function() {
             console.log("clicked download to excel")
             const keywords = store.getters.getKeywordResult
+            console.log(keywords)
             console.log(keywords.lengths)
             const data = XLSX.utils.json_to_sheet(keywords)
             const wb = XLSX.utils.book_new()
