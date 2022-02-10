@@ -25,6 +25,7 @@
 <script>
 import { ref, computed, reactive } from 'vue';
 import TableLite  from 'vue3-table-lite'
+import store from '@/store'
 
 export default {
     name: "KeywordResultComponent",
@@ -34,16 +35,8 @@ export default {
     setup() {
         const searchTerm = ref(""); // Search text
 
-      // Fake data
-        const data = reactive([]);
-        for (let i = 0; i < 126; i++) {
-        data.push({
-            keyword: "keyword"+i,
-            avgVolume: i*100,
-            cpc: (i * 3.14).toFixed(2),
-            cmp: (i * 6.14).toFixed(2)
-        });
-        }
+        let data = store.getters.getKeywordResult;
+        console.log(data.length)
 
         // Init Your table settings
         const table = reactive({
