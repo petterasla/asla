@@ -36,7 +36,7 @@ export default {
         const searchTerm = ref(""); // Search text
 
         let data = store.getters.getKeywordResult;
-        console.log(data.length)
+        console.log(data)
 
         // Init Your table settings
         const table = reactive({
@@ -44,36 +44,37 @@ export default {
             columns: [
             {
                 label: "Keyword",
-                field: "keyword",
-                width: "10%",
+                field: 'string',
+                width: "20%",
                 sortable: true,
                 isKey: true,
             },
             {
-                label: "Avg volume",
-                field: "avgVolume",
-                width: "10%",
+                label: "Avg volume last 12 months",
+                field: 'volume',
+                width: "20%",
                 sortable: true,
             },
             {
                 label: "Cost per click",
-                field: "cpc",
+                field: 'cpc',
                 width: "10%",
                 sortable: true,
             },
             {
                 label: "Ads competition",
-                field: "cmp",
+                field: 'cmp',
                 width: "10%",
                 sortable: true,
             },
             ],
-            rows: computed(() => {
-            return data.filter(
-            (x) =>
-                x.keyword.toLowerCase().includes(searchTerm.value.toLowerCase())
-            );
-            }),
+            rows: data,
+            //rows: computed(() => {
+            //return data.results.chair.filter(
+            //(x) =>
+            //    x.string.toLowerCase().includes(searchTerm.value.toLowerCase())
+            //);
+            //}),
             totalRecordCount: computed(() => {
                 return table.rows.length;
             }),
