@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import WallComponent from "@/components/WallComponent.vue";
 import { Options, Vue } from "vue-class-component";
 
