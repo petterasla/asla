@@ -9,8 +9,8 @@ export const AuthState = reactive({
 });
 
 const config = {
-    domain: process.env.AUTH0_DOMAIN,
-    client_id: process.env.AUTH0_CLIENT_ID
+    domain: process.env.VUE_APP_AUTH0_DOMAIN,
+    client_id: process.env.VUE_APP_AUTH0_CLIENT_ID
 };
 
 export const useAuth0 = function(state: any) { 
@@ -23,7 +23,7 @@ export const useAuth0 = function(state: any) {
 
     const initAuth = () => {
         state.loading = true;
-        createAuth0Client({
+        const client = createAuth0Client({
              domain: config.domain,
              client_id: config.client_id,
              cacheLocation: 'localstorage',
@@ -31,7 +31,7 @@ export const useAuth0 = function(state: any) {
          }).then(async auth => {
              state.auth0 = auth;
              await handleStateChange();
-         });        
+         });      
    }
 
    const login = async () => {
