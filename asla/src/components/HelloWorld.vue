@@ -35,9 +35,6 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  },
-  setup() {
-    console.log("auth domain: " + process.env.VUE_APP_AUTH0_DOMAIN);
   }
 }
 </script>
