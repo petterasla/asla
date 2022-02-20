@@ -2,23 +2,20 @@
     <div class="numerator">
         <h1> 1 </h1>
         <input v-model="keyword" placeholder="Insert keyword here">
-        <button @click="search">Search</button>
+        <button @click="$store.dispatch('requestKeywordTool', keyword)">Search</button>
     </div>
 </template>
 
-<script lang="ts">
-    import { ref } from 'vue';
-    let isClicked = false;
-
-    export default {
-        name: 'KeywordInputComponent',
-        methods: {
-            search() {
-                isClicked = true
-            }
+<script>
+export default {
+    name: 'KeywordInputComponent',
+    setup() {
+        return {
+            keyword: null
         }
-    
     }
+
+}
 
 </script>
 

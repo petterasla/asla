@@ -35,7 +35,7 @@ export default {
     setup() {
         const searchTerm = ref(""); // Search text
 
-        let data = store.getters.getKeywordResult;
+        let data = store.getters.getRequestResult;
         console.log(data)
 
         // Init Your table settings
@@ -71,9 +71,13 @@ export default {
             //rows: data,
             rows: computed(() => {
             return data.filter(
-            (x) =>
+            (x) => {
+                if (typeof x.keyword === 'undefined') {
+                    console.log('filter search undefined')
+                    return ""
+                }
                 x.keyword.toLowerCase().includes(searchTerm.value.toLowerCase())
-            );
+            });
             }),
             totalRecordCount: computed(() => {
                 return table.rows.length;
