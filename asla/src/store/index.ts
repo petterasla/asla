@@ -9,62 +9,171 @@ const storeObject = {
         },
         UPDATE_SUGGESTION_RESULT(state: any, payload: any) {
             console.log("updating SUGGESTIONS result...")
+            console.log(payload)
             state.request_suggestion_result = payload;
         },
         UPDATE_RELATED_RESULT(state: any, payload: any) {
             console.log("updating RELATED KEYWORD result...")
             state.request_related_result = payload;
+        },
+        UPDATE_ROWS(state: any, payload: any) {
+            console.log("updating table rows")
+            state.table.rows = payload
+        },
+        UPDATE_ROW_LENGTH(state: any, payload: any) {
+            console.log("updating row length")
+            state.table.totalRecordCount = payload
+        },
+        UPDATE_LOADING_TABLE(state: any, payload: boolean) {
+            console.log("isLoading = " + payload);
+            state.table.isLoading = payload
+        },
+        UPDATE_TABLE_SORT(state: any, payload: string) {
+            console.log("update sorting")
+            state.table.sortable.sort = payload;
+        },
+        UPDATE_TABLE_ORDER(state: any, payload: string) {
+            console.log("update order")
+            state.table.sortable.order = payload
         }
     },
     actions: {
         requestKeywordTool(context: any, payload: any) {
+            // console.log("pushing element to rows")
+            // context.state.table.rows.push(
+            //     {keyword: 'chair covers2', volume: 110000, cpc: 0.886257, cmp: 1}
+            // )
             console.log("calling requestKeywordTool")
             console.log("keyword: " + payload)
             context.commit('UPDATE_KEYWORD', payload)
+            context.commit('UPDATE_LOADING_TABLE', true)
 
-            const suggestionResult = requestKeywordSuggestions(payload)
-            context.commit('UPDATE_SUGGESTION_RESULT', suggestionResult)
+            
+            requestKeywordSuggestions(payload)
+                .then(function(result: any) { 
+                    context.commit('UPDATE_SUGGESTION_RESULT', result)
+                    requestRelatedKeyword(payload)
+                        .then(function(relatedResult: any) {
+                            context.commit('UPDATE_RELATED_RESULT', relatedResult)
+                            const rows = getRequestResult(context.state)
+                            context.commit('UPDATE_ROWS', rows)
+                            context.commit('UPDATE_ROW_LENGTH', rows.length)
+                            context.commit('UPDATE_LOADING_TABLE', false)
+                            context.commit('UPDATE_TABLE_SORT', "volume")
+                            context.commit('UPDATE_TABLE_ORDER', "desc")
+                        })
+                })
+                
+            
 
-            const relatedKeywordResult = requestRelatedKeyword(payload)
-            context.commit('UPDATE_RELATED_RESULT', relatedKeywordResult)
+            //const relatedKeywordResult = requestRelatedKeyword(payload)
+            //context.commit('UPDATE_RELATED_RESULT', relatedKeywordResult)
+          
+            //const rows = getRequestResult(context.state)
+            //context.commit('UPDATE_ROWS', rows)
         }
     },
     getters: {
-        getRequestResult: function(state: any) {
-            console.log("Putting result together..")
-            const afterFirstRows = state.request_suggestion_result.results[state.keyword];
-            const firstRow = state.request_suggestion_result.results[""][0];
-            const rows = []
-            rows.push(firstRow);
-            for(let i = 0; i < afterFirstRows.length; i++) {
-                rows.push(afterFirstRows[i])
-            }
-            console.log("Sorting result by volume")
-            rows.sort(compare)
-            return mapKeywordResult(rows)
-        }
     },
     state: {
         keyword: "",
-        request_suggestion_result: {
-            "results": {
-                "": [
-                    {}
-                ]
+        request_suggestion_result: {},
+        request_related_result: {},
+        table: 
+            {
+                isLoading: false,
+                columns: [
+                {
+                    label: "Keyword",
+                    field: 'keyword',
+                    width: "20%",
+                    sortable: true,
+                    isKey: true,
+                },
+                {
+                    label: "Avg volume last 12 months",
+                    field: 'volume',
+                    width: "20%",
+                    sortable: true,
+                },
+                {
+                    label: "Cost per click",
+                    field: 'cpc',
+                    width: "10%",
+                    sortable: true,
+                },
+                {
+                    label: "Ads competition",
+                    field: 'cmp',
+                    width: "10%",
+                    sortable: true,
+                },
+                ],
+                rows: [],
+                totalRecordCount: 0,
+                sortable: {
+                    order: "avgVolume",
+                    sort: "desc",
+                },
             }
-        },
-        request_related_result: {
-            "results": {
-                "": [
-                    {}
-                ]
-            }
-        }
     
     }
 }
 
-function requestKeywordSuggestions(keyword: string) {
+function getRequestResult(state: any): any {
+    console.log("Putting result together..")
+    console.log(state.request_suggestion_result.results)
+    //const afterFirstRows = state.request_suggestion_result.results[state.keyword];
+    const rows = getSuggestionRows(state)
+    const related = getRelatedRows(state)
+    Array.prototype.push.apply(rows, related)
+    console.log("request row size: " + rows.length)
+    rows.sort(compare)
+    return mapKeywordResult(rows)
+}
+
+function getRelatedRows(state: any): any {
+    const afterFirstRows = state.request_related_result.results["related"];
+    const firstRow = state.request_related_result.results[""][0];
+    const rows = []
+    if (firstRow === undefined || firstRow.length <= 0) {
+        console.log("Returning empty request result")
+        return {
+            'keyword': "",
+            'volume': "",
+            'cpc': "",
+            'cmp': ""
+        }
+    }
+    rows.push(firstRow);
+    for(let i = 0; i < afterFirstRows.length; i++) {
+        rows.push(afterFirstRows[i])
+    }
+    return rows;
+}
+
+function getSuggestionRows(state: any): any {
+    const afterFirstRows = state.request_suggestion_result.results["chair"];
+    const firstRow = state.request_suggestion_result.results[""][0];
+    const rows = []
+    if (firstRow === undefined || firstRow.length <= 0) {
+        console.log("Returning empty request result")
+        return {
+            'keyword': "",
+            'volume': "",
+            'cpc': "",
+            'cmp': ""
+        }
+    }
+    rows.push(firstRow);
+    for(let i = 0; i < afterFirstRows.length; i++) {
+        rows.push(afterFirstRows[i])
+    }
+    console.log("Sorting result by volume")
+    return rows;
+}
+
+function requestKeywordSuggestions(keyword: string): any {
     const options = {
         method: 'POST',
         headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
@@ -84,21 +193,23 @@ function requestKeywordSuggestions(keyword: string) {
     }
     
     const url = process.env.VUE_APP_API_KEYWORD_SUGGESTION;
+    
+    console.log("Requesting suggestions for keyword " + keyword)
 
-    fetch(url, options)
+
+    return fetch(url, options)
         .then(response => response.json())
         .then(response => {
-            console.log(response)
-            return response
+            console.log("Successful retrieved suggestions")
+            return keyword_result1
         })
         .catch(err => {
             console.log("Failed to request Keyword Suggestions")
-            console.error(err)
-            return keyword_result
-        });
+            return keyword_result1
+        })
 }
 
-function requestRelatedKeyword(keyword: string) {
+function requestRelatedKeyword(keyword: string): any {
     const options = {
         method: 'POST',
         headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
@@ -119,16 +230,17 @@ function requestRelatedKeyword(keyword: string) {
     
     const url = process.env.VUE_APP_API_KEYWORD_SUGGESTION;
 
-    fetch(url, options)
+    console.log("Requesting related keywords for keyword " + keyword)
+
+    return fetch(url, options)
         .then(response => response.json())
         .then(response => {
-            console.log(response)
-            return response
+            console.log("Successful retrieved suggestions")
+            return keyword_result2
         })
         .catch(err => {
-            console.log("Failed to request Related Keywords")
-            console.error(err)
-            return keyword_result
+            console.log("Failed to request Keyword Suggestions")
+            return keyword_result2
         });
 }
 
@@ -142,12 +254,11 @@ function compare(a: {volume: number} , b: {volume: number}) {
       return 0;
 }
 
-function mapKeywordResult(results: any) {
+function mapKeywordResult(results: any): any {
     console.log("Mapping result")
     console.log(results)
     return results.map(function(result: any) {
-        console.log(result)
-        return {
+        const row = {
             'keyword': result.string,
             'volume': result.volume,
             'cpc': result.cpc,
@@ -165,6 +276,8 @@ function mapKeywordResult(results: any) {
             [result.m11_month + '-' + result.m11_year]: result.m11,
             [result.m12_month + '-' + result.m12_year]: result.m12,
         }
+        console.log(row)
+        return row
     })
 }
 
@@ -172,7 +285,7 @@ const store = createStore(storeObject);
 
 export default store;
 
-let keyword_result: {
+const keyword_result1 = {
     // Copied from example in keywordtool.io
     // https://docs.keywordtool.io/reference/keyword-suggestions-google
     "results":{
@@ -307,6 +420,311 @@ let keyword_result: {
             },
             {
                 "string":"chair cushions",
+                "volume":110000,
+                "m1":165000,
+                "m1_month":7,
+                "m1_year":2020,
+                "m2":165000,
+                "m2_month":6,
+                "m2_year":2020,
+                "m3":201000,
+                "m3_month":5,
+                "m3_year":2020,
+                "m4":165000,
+                "m4_month":4,
+                "m4_year":2020,
+                "m5":90500,
+                "m5_month":3,
+                "m5_year":2020,
+                "m6":74000,
+                "m6_month":2,
+                "m6_year":2020,
+                "m7":60500,
+                "m7_month":1,
+                "m7_year":2020,
+                "m8":60500,
+                "m8_month":12,
+                "m8_year":2019,
+                "m9":74000,
+                "m9_month":11,
+                "m9_year":2019,
+                "m10":60500,
+                "m10_month":10,
+                "m10_year":2019,
+                "m11":60500,
+                "m11_month":9,
+                "m11_year":2019,
+                "m12":90500,
+                "m12_month":8,
+                "m12_year":2019,
+                "cpc":0.839226,
+                "cmp":1
+            }
+        ]
+    }
+}
+
+const keyword_result2 = {
+    // Copied from example in keywordtool.io
+    // https://docs.keywordtool.io/reference/keyword-suggestions-google
+    "results":{
+        "":[
+            {
+                "string":"related",
+                "volume":1500000,
+                "m1":2240000,
+                "m1_month":7,
+                "m1_year":2020,
+                "m2":1830000,
+                "m2_month":6,
+                "m2_year":2020,
+                "m3":2240000,
+                "m3_month":5,
+                "m3_year":2020,
+                "m4":2240000,
+                "m4_month":4,
+                "m4_year":2020,
+                "m5":1500000,
+                "m5_month":3,
+                "m5_year":2020,
+                "m6":1220000,
+                "m6_month":2,
+                "m6_year":2020,
+                "m7":1500000,
+                "m7_month":1,
+                "m7_year":2020,
+                "m8":1220000,
+                "m8_month":12,
+                "m8_year":2019,
+                "m9":1000000,
+                "m9_month":11,
+                "m9_year":2019,
+                "m10":1000000,
+                "m10_month":10,
+                "m10_year":2019,
+                "m11":1000000,
+                "m11_month":9,
+                "m11_year":2019,
+                "m12":1220000,
+                "m12_month":8,
+                "m12_year":2019,
+                "cpc":0.977496,
+                "cmp":1
+            }
+        ],
+        "related":[
+            {
+                "string":"related covers",
+                "volume":110000,
+                "m1":135000,
+                "m1_month":7,
+                "m1_year":2020,
+                "m2":110000,
+                "m2_month":6,
+                "m2_year":2020,
+                "m3":135000,
+                "m3_month":5,
+                "m3_year":2020,
+                "m4":110000,
+                "m4_month":4,
+                "m4_year":2020,
+                "m5":90500,
+                "m5_month":3,
+                "m5_year":2020,
+                "m6":90500,
+                "m6_month":2,
+                "m6_year":2020,
+                "m7":110000,
+                "m7_month":1,
+                "m7_year":2020,
+                "m8":110000,
+                "m8_month":12,
+                "m8_year":2019,
+                "m9":135000,
+                "m9_month":11,
+                "m9_year":2019,
+                "m10":110000,
+                "m10_month":10,
+                "m10_year":2019,
+                "m11":110000,
+                "m11_month":9,
+                "m11_year":2019,
+                "m12":110000,
+                "m12_month":8,
+                "m12_year":2019,
+                "cpc":0.886257,
+                "cmp":1
+            },
+            {
+                "string":"related chairish",
+                "volume":60500,
+                "m1":74000,
+                "m1_month":7,
+                "m1_year":2020,
+                "m2":74000,
+                "m2_month":6,
+                "m2_year":2020,
+                "m3":74000,
+                "m3_month":5,
+                "m3_year":2020,
+                "m4":60500,
+                "m4_month":4,
+                "m4_year":2020,
+                "m5":49500,
+                "m5_month":3,
+                "m5_year":2020,
+                "m6":60500,
+                "m6_month":2,
+                "m6_year":2020,
+                "m7":60500,
+                "m7_month":1,
+                "m7_year":2020,
+                "m8":49500,
+                "m8_month":12,
+                "m8_year":2019,
+                "m9":49500,
+                "m9_month":11,
+                "m9_year":2019,
+                "m10":60500,
+                "m10_month":10,
+                "m10_year":2019,
+                "m11":60500,
+                "m11_month":9,
+                "m11_year":2019,
+                "m12":60500,
+                "m12_month":8,
+                "m12_year":2019,
+                "cpc":0.093084,
+                "cmp":0.15641728857361
+            },
+            {
+                "string":"relate2d cushions",
+                "volume":110000,
+                "m1":165000,
+                "m1_month":7,
+                "m1_year":2020,
+                "m2":165000,
+                "m2_month":6,
+                "m2_year":2020,
+                "m3":201000,
+                "m3_month":5,
+                "m3_year":2020,
+                "m4":165000,
+                "m4_month":4,
+                "m4_year":2020,
+                "m5":90500,
+                "m5_month":3,
+                "m5_year":2020,
+                "m6":74000,
+                "m6_month":2,
+                "m6_year":2020,
+                "m7":60500,
+                "m7_month":1,
+                "m7_year":2020,
+                "m8":60500,
+                "m8_month":12,
+                "m8_year":2019,
+                "m9":74000,
+                "m9_month":11,
+                "m9_year":2019,
+                "m10":60500,
+                "m10_month":10,
+                "m10_year":2019,
+                "m11":60500,
+                "m11_month":9,
+                "m11_year":2019,
+                "m12":90500,
+                "m12_month":8,
+                "m12_year":2019,
+                "cpc":0.839226,
+                "cmp":1
+            },
+            {
+                "string":"related2 covers",
+                "volume":110000,
+                "m1":135000,
+                "m1_month":7,
+                "m1_year":2020,
+                "m2":110000,
+                "m2_month":6,
+                "m2_year":2020,
+                "m3":135000,
+                "m3_month":5,
+                "m3_year":2020,
+                "m4":110000,
+                "m4_month":4,
+                "m4_year":2020,
+                "m5":90500,
+                "m5_month":3,
+                "m5_year":2020,
+                "m6":90500,
+                "m6_month":2,
+                "m6_year":2020,
+                "m7":110000,
+                "m7_month":1,
+                "m7_year":2020,
+                "m8":110000,
+                "m8_month":12,
+                "m8_year":2019,
+                "m9":135000,
+                "m9_month":11,
+                "m9_year":2019,
+                "m10":110000,
+                "m10_month":10,
+                "m10_year":2019,
+                "m11":110000,
+                "m11_month":9,
+                "m11_year":2019,
+                "m12":110000,
+                "m12_month":8,
+                "m12_year":2019,
+                "cpc":0.886257,
+                "cmp":1
+            },
+            {
+                "string":"related2 chairish",
+                "volume":60500,
+                "m1":74000,
+                "m1_month":7,
+                "m1_year":2020,
+                "m2":74000,
+                "m2_month":6,
+                "m2_year":2020,
+                "m3":74000,
+                "m3_month":5,
+                "m3_year":2020,
+                "m4":60500,
+                "m4_month":4,
+                "m4_year":2020,
+                "m5":49500,
+                "m5_month":3,
+                "m5_year":2020,
+                "m6":60500,
+                "m6_month":2,
+                "m6_year":2020,
+                "m7":60500,
+                "m7_month":1,
+                "m7_year":2020,
+                "m8":49500,
+                "m8_month":12,
+                "m8_year":2019,
+                "m9":49500,
+                "m9_month":11,
+                "m9_year":2019,
+                "m10":60500,
+                "m10_month":10,
+                "m10_year":2019,
+                "m11":60500,
+                "m11_month":9,
+                "m11_year":2019,
+                "m12":60500,
+                "m12_month":8,
+                "m12_year":2019,
+                "cpc":0.093084,
+                "cmp":0.15641728857361
+            },
+            {
+                "string":"related2 cushions",
                 "volume":110000,
                 "m1":165000,
                 "m1_month":7,
