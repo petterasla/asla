@@ -19,20 +19,34 @@ const storeObject = {
             //const has_searched = !state.has_searched;
             console.log("updating HAS SEARCHED to true")
             state.has_searched = true;
+        },
+        UPDATE_IS_SEARCHING(state: any, payload: boolean) {
+            //const has_searched = !state.has_searched;
+            console.log("updating IS SEARCHING to " + payload)
+            state.is_searching = payload;
+        },
+        UPDATE_KEYWORD_LIST(state: any, payload: any) {
+            //const has_searched = !state.has_searched;
+            console.log("updating KEYWORD_LIST to " + payload)
+            state.keywords_list = payload;
         }
     },
     actions: {
         requestKeywordTool(context: any, payload: any) {
             console.log("calling requestKeywordTool")
-            console.log("keyword: " + payload)
+            console.log("keywords: " + payload)
             context.commit('UPDATE_KEYWORD', payload)
+            context.commit('UPDATE_IS_SEARCHING', true)
 
+            const keyword_list = convertKeywordStringToList(payload)
+            context.commit('UPDATE_KEYWORD_LIST', keyword_list)
             //const suggestionResult = requestKeywordSuggestions(payload)
             //context.commit('UPDATE_SUGGESTION_RESULT', suggestionResult)
 
             //const relatedKeywordResult = requestRelatedKeyword(payload)
             //context.commit('UPDATE_RELATED_RESULT', relatedKeywordResult)
 
+            context.commit('UPDATE_IS_SEARCHING', false)
             context.commit('UPDATE_HAS_SEARCHED', payload)
         }
     },
@@ -54,7 +68,9 @@ const storeObject = {
         }
     },
     state: {
-        keyword: "",
+        keywords: "",
+        keywords_list: [],
+        is_searching: false,
         has_searched: false,   
         request_suggestion_result: {
             "results": {
@@ -72,6 +88,10 @@ const storeObject = {
         }
     
     }
+}
+
+function convertKeywordStringToList(keywordsAsString: string) {
+    return keywordsAsString.split("\n"); // "/\s+/" with whitespace and newline
 }
 
 function requestKeywordSuggestions(keyword: string) {
@@ -93,7 +113,7 @@ function requestKeywordSuggestions(keyword: string) {
         })
     }
     
-    const url = process.env.VUE_APP_API_KEYWORD_SUGGESTION;
+    const url = ""+ process.env.VUE_APP_API_KEYWORD_SUGGESTION;
 
     fetch(url, options)
         .then(response => response.json())
@@ -127,7 +147,7 @@ function requestRelatedKeyword(keyword: string) {
         })
     };
     
-    const url = process.env.VUE_APP_API_KEYWORD_SUGGESTION;
+    const url = "" + process.env.VUE_APP_API_KEYWORD_SUGGESTION;
 
     fetch(url, options)
         .then(response => response.json())

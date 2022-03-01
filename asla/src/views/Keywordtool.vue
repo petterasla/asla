@@ -2,24 +2,18 @@
     <div class="keywordtool" v-if="!state.loading">
         <div v-if="state.isAuthenticated">
             <h1>Let's make life easier</h1>
-            <KeywordInputComponent />
-            <div v-if="searched">            
-                <KeywordResultComponent />
-                <ExportToExcelComponent />
-            </div>
-            <button @click="logout()" class="auth0-logout btn btn-primary">Logout</button>
+            <KeywordTextAreaComponent />
+            <el-button type="info" @click="logout()" class="auth0-logout btn btn-primary">Logout</el-button>
         </div>
         <div v-else class="auth0-login">
-            <button @click="login()" class="btn btn-primary">Login</button>
+            <el-button type="primary" @click="login()" class="btn btn-primary">Login</el-button>
         </div>
     </div>
 </template>
 
 
 <script>
-import KeywordInputComponent from "@/components/keyword/KeywordInputComponent.vue";
-import KeywordResultComponent from "@/components/keyword/KeywordResultComponent.vue";
-import ExportToExcelComponent from "@/components/keyword/ExportToExcelComponent.vue"
+import KeywordTextAreaComponent from "@/components/keyword/KeywordTextAreaComponent.vue";
 import { useAuth0, AuthState } from "@/utils/useAuth0";
 import { ref } from 'vue';
 import {useStore} from "vuex";
@@ -30,9 +24,7 @@ initAuth();
 
 export default {
 components: {
-    KeywordInputComponent,
-    KeywordResultComponent,
-    ExportToExcelComponent
+        KeywordTextAreaComponent
     },
     computed: {
         searched() {

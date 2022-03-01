@@ -24,8 +24,8 @@ export const useAuth0 = function(state: any) {
     const initAuth = () => {
         state.loading = true;
         const client = createAuth0Client({
-             domain: config.domain,
-             client_id: config.client_id,
+             domain: "" + config.domain,
+             client_id: "" + config.client_id,
              cacheLocation: 'localstorage',
              redirect_uri: window.location.origin
          }).then(async auth => {
