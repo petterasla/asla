@@ -14,6 +14,11 @@ const storeObject = {
         UPDATE_RELATED_RESULT(state: any, payload: any) {
             console.log("updating RELATED KEYWORD result...")
             state.request_related_result = payload;
+        },
+        UPDATE_HAS_SEARCHED(state: any, payload: any) {
+            //const has_searched = !state.has_searched;
+            console.log("updating HAS SEARCHED to true")
+            state.has_searched = true;
         }
     },
     actions: {
@@ -22,17 +27,21 @@ const storeObject = {
             console.log("keyword: " + payload)
             context.commit('UPDATE_KEYWORD', payload)
 
-            const suggestionResult = requestKeywordSuggestions(payload)
-            context.commit('UPDATE_SUGGESTION_RESULT', suggestionResult)
+            //const suggestionResult = requestKeywordSuggestions(payload)
+            //context.commit('UPDATE_SUGGESTION_RESULT', suggestionResult)
 
-            const relatedKeywordResult = requestRelatedKeyword(payload)
-            context.commit('UPDATE_RELATED_RESULT', relatedKeywordResult)
+            //const relatedKeywordResult = requestRelatedKeyword(payload)
+            //context.commit('UPDATE_RELATED_RESULT', relatedKeywordResult)
+
+            context.commit('UPDATE_HAS_SEARCHED', payload)
         }
     },
     getters: {
         getRequestResult: function(state: any) {
             console.log("Putting result together..")
-            const afterFirstRows = state.request_suggestion_result.results[state.keyword];
+            console.log(state.request_suggestion_result.results)
+            console.log(state.request_suggestion_result.results[""].length)
+            const afterFirstRows = state.request_suggestion_result.results[""];
             const firstRow = state.request_suggestion_result.results[""][0];
             const rows = []
             rows.push(firstRow);
@@ -46,6 +55,7 @@ const storeObject = {
     },
     state: {
         keyword: "",
+        has_searched: false,   
         request_suggestion_result: {
             "results": {
                 "": [
@@ -93,7 +103,7 @@ function requestKeywordSuggestions(keyword: string) {
         })
         .catch(err => {
             console.log("Failed to request Keyword Suggestions")
-            console.error(err)
+            console.error(keyword_result.results[""][0])
             return keyword_result
         });
 }
