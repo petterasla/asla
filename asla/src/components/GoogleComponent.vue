@@ -55,8 +55,10 @@ export default {
 
        window.addEventListener('load', () => {
                 console.log(window.google);
+                const googleId = process.env.VUE_APP_GOOGLE_CLIENT_ID;
+                console.log("google Id: " + googleId)
                 window.google.accounts.id.initialize({
-                    client_id: "749862802460-aeuuju8u5m1l6s12bb0671ard7g216vs.apps.googleusercontent.com",
+                    client_id: process.env.VUE_APP_GOOGLE_CLIENT_ID,
                     callback: this.handleCredentialResponse
                 });
                 window.google.accounts.id.renderButton(
