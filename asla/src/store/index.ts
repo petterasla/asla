@@ -29,6 +29,10 @@ const storeObject = {
             //const has_searched = !state.has_searched;
             console.log("updating KEYWORD_LIST to " + payload)
             state.keywords_list = payload;
+        },
+        UPDATE_AUTHENTICATION_STATE(state: any, payload: any) {
+            console.log("update is_authentication state from: " + state.is_authenticated + " to: " + payload);
+            state.is_authenticated = payload;
         }
     },
     actions: {
@@ -48,6 +52,10 @@ const storeObject = {
 
             context.commit('UPDATE_IS_SEARCHING', false)
             context.commit('UPDATE_HAS_SEARCHED', payload)
+        },
+        updateAuthentication(context: any, payload: any) {
+            console.log("Update authentication state with this action");
+            context.commit('UPDATE_AUTHENTICATION_STATE', payload);
         }
     },
     getters: {
@@ -72,6 +80,7 @@ const storeObject = {
         keywords_list: [],
         is_searching: false,
         has_searched: false,   
+        is_authenticated: false,
         request_suggestion_result: {
             "results": {
                 "": [

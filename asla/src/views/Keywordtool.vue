@@ -1,12 +1,12 @@
 <template>
     <div class="keywordtool" v-if="!state.loading">
-        <div v-if="state.isAuthenticated">
+        <div v-if="state.is_authenticated">
             <h1>Let's make life easier</h1>
             <KeywordTextAreaComponent />
             <el-button type="info" @click="logout()" class="auth0-logout btn btn-primary">Logout</el-button>
         </div>
-        <div v-else class="auth0-login">
-            <el-button type="primary" @click="login()" class="btn btn-primary">Login</el-button>
+        <div v-else class="google-login">
+            <GoogleComponent />
         </div>
     </div>
 </template>
@@ -14,17 +14,14 @@
 
 <script>
 import KeywordTextAreaComponent from "@/components/keyword/KeywordTextAreaComponent.vue";
-import { useAuth0, AuthState } from "@/utils/useAuth0";
 import { ref } from 'vue';
 import {useStore} from "vuex";
-
-const { login, logout, initAuth } = useAuth0(AuthState);
-
-initAuth();
+import GoogleComponent from "@/components/GoogleComponent.vue";
 
 export default {
 components: {
-        KeywordTextAreaComponent
+        KeywordTextAreaComponent,
+        GoogleComponent
     },
     computed: {
         searched() {
@@ -33,12 +30,10 @@ components: {
         }
     },
     setup() {
-        let state = ref(AuthState);
-
+        const store = useStore();
+        const state = ref(store.state);
         return {
-            state,
-            login,
-            logout
+            state
         }
     }
 };
@@ -50,7 +45,7 @@ components: {
 .keywordtool {
      text-align: center;
 }
-.auth0-login {
+.google-login {
     margin-top: 5em;
     text-align: center;
 }
