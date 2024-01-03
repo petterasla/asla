@@ -1,12 +1,16 @@
 .DS_Store
-node_modules
+asla-app/node_modules
+asla-app/package-lock.json
+
 /dist
-package-lock.json
+asla/package-lock.json
 yarn.lock
 
 # local env files
 .env.local
-.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Log files
 npm-debug.log*
@@ -22,3 +26,9 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# testing
+/coverage
+
+# production
+/build

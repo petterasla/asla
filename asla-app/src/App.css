@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+  background-color: #173342;
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: "Devanagari MT", serif;
+}
+
+.App-header div {
+  position: relative;
+  display: inline-block;
+  font-size: calc(30px + 10vmin);
+  color: #ffffff;
+  font-family: "Devanagari MT", serif;
+  animation: flip 5s infinite;
+  animation-delay: calc(.2s * var(--i));
+}
+.invisible-space {
+  opacity: 0;
+}
+@keyframes flip {
+  0%, 80% {
+    transform: rotateY(360deg);
+  }
+}
