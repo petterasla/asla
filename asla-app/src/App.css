@@ -1,26 +1,19 @@
 .App {
-  text-align: center;
   background-color: #173342;
 }
 
 .App-header {
-  min-height: 100vh;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-family: "Devanagari MT", serif;
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+  height: 100vh; /* Set the container height to the full viewport height */
 }
 
-.App-header div {
-  position: relative;
-  display: inline-block;
-  font-size: calc(30px + 10vmin);
-  color: #ffffff;
-  font-family: "Devanagari MT", serif;
-  animation: flip 5s infinite;
-  animation-delay: calc(.2s * var(--i));
+.App-header img {
+    max-width: 75%;
+    height: auto;
 }
+
 .invisible-space {
   opacity: 0;
 }
