@@ -17,9 +17,6 @@ function App() {
                     <Route path="/contact" element={<Contact/>}/>
                 </Routes>
             </div>
-            <div className="App-header">
-                <img src={"asla-engineering-high-resolution-logo-white-transparent.png"} alt={"Company logo"}/>
-            </div>
         </div>
     );
 }

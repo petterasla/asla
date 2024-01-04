@@ -1,14 +1,20 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import './Navbar.css'
 
 const Navbar = () => {
     return <div className="navBar">
-        <Link to="/">Hjem</Link>
+        <NavLink to="/" className={({isActive}) => isActive ? "active" : ""}>
+            Hjem
+        </NavLink>
         <div className="separator">|</div>
-        <Link to="/background">Bakgrunn</Link>
+        <NavLink to="/background" className={({isActive}) => isActive ? "active" : ""}>
+            Bakgrunn
+        </NavLink>
         <div className="separator">|</div>
-        <Link to="/contact">Kontakt</Link>
+        <NavLink to="/contact"className={({isActive}) => isActive ? "active" : ""}>
+            Kontakt
+        </NavLink>
     </div>
 
 }

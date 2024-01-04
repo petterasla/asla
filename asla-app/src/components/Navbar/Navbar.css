@@ -13,6 +13,10 @@
     text-decoration: none;
 }
 
+.navBar a.active {
+    font-style: italic;
+}
+
 .separator {
     font-size: 6vw;
     color: white;
