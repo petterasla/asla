@@ -1,0 +1,19 @@
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    color: white;
+    padding-top: 25vh;
+    font-size: min(max(2vw, 20px), 34px);
+    font-style: italic;
+    text-align: left;
+}
+
+.row {
+    margin-left: 30vw;
+    padding-bottom: 1vw;
+}
+
+.row a {
+    color: white
+}
