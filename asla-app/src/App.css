@@ -10,15 +10,17 @@
 }
 
 .App-header img {
-    max-width: 75%;
-    height: auto;
+  opacity: 0;
+  max-width: 75%;
+  height: auto;
+  animation: fade-in 2s ease-in forwards;
 }
 
-.invisible-space {
-  opacity: 0;
-}
-@keyframes flip {
-  0%, 80% {
-    transform: rotateY(360deg);
+@keyframes fade-in {
+  from {
+    opacity: 0; /* Start with opacity 0 (fully transparent) */
+  }
+  to {
+    opacity: 1; /* End with opacity 1 (fully opaque) */
   }
 }
