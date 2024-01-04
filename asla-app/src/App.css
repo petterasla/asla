@@ -1,12 +1,13 @@
 .App {
   background-color: #173342;
+  height: 100vh;
 }
 
 .App-header {
   display: flex;
   justify-content: center; /* Horizontally center the content */
   align-items: center; /* Vertically center the content */
-  height: 100vh; /* Set the container height to the full viewport height */
+  padding-top: 30vh; /* Set the container height to the full viewport height */
 }
 
 .App-header img {
