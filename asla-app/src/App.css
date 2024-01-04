@@ -5,14 +5,14 @@
 
 .App-header {
   min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
   font-family: "Devanagari MT", serif;
 }
 
-.App-header div {
+.App-header div div {
   position: relative;
   display: inline-block;
   font-size: calc(30px + 10vmin);
@@ -24,6 +24,30 @@
 .invisible-space {
   opacity: 0;
 }
+
+.header-row-1 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-row-2 {
+  min-height: 0vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-row-3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes flip {
   0%, 80% {
     transform: rotateY(360deg);
