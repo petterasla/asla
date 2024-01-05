@@ -1,19 +1,58 @@
 .contact {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    color: white;
-    padding-top: 25vh;
-    font-size: min(max(2vw, 20px), 34px);
+    padding-top: 10vh;
+}
+.contact-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: min(50vw, 300px);
+    margin: auto;
+    text-align: center;
+    font-family: "Devanagari MT", serif;
+    background-color: white;
+}
+
+.contact-card img {
+    width: 100%;
+}
+
+.contact-logo {
+    margin: 24px 0;
+}
+
+.name {
+    margin: 2vw 0 0 0;
+    font-size: 5vw;
+    font-weight: bold;
+}
+.title {
+    font-size: 4vw;
+    color: #606060;
+    margin: 0;
+}
+
+.title-company {
+    margin: 0;
+    padding: 0;
+    font-size: 3vw;
+    color: #606060;
+}
+
+.email {
+    font-size: 2.6vw;
     font-style: italic;
-    text-align: left;
+    margin-bottom: 0;
 }
 
-.row {
-    margin-left: 30vw;
-    padding-bottom: 1vw;
+.phone {
+    margin-top: 0;
+    font-size: 2.6vw;
+    font-style: italic;
 }
 
-.row a {
-    color: white
+a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
 }
+
+
