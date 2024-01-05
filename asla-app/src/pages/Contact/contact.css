@@ -2,7 +2,7 @@
     padding-top: 10vh;
 }
 .contact-card {
-    box-shadow: 0 4px 8px 0 rgba(1, 1, 0, 0.2);
+    box-shadow: 10px 10px 20px 2px black;
     max-width: min(50vw, 300px);
     margin: auto;
     text-align: center;
