@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5vh;
+}
+
+.flex-item {
+    display: flex;
+    flex: 1;
+    /*box-sizing: border-box;*/
+    /*border: 2px solid #ddd*/
+}
+
+.container img {
+    width: min(40vw, 300px);
+    border-radius: 50%;
+    justify-content: center;
+}
+
+.name {
+    flex-direction: row;
+    color: white;
+    font-family: "Trebuchet MS", serif;
+    font-weight: normal;
+    font-style: italic;
+    max-height: min(10vw, 80px)
+}
+
+.title-about-me {
+    font-size: min(max(3vw, 18px), 30px);
+    max-height: min(10vw, 80px);
+    margin-bottom: 2vw;
+    margin-top: 3vw;
+}
+
+.about-me {
+    max-width: 70vw;
+    min-width: 70vw;
+}
+
+.CV-header {
+    max-width: 70vw;
+    min-width: 70vw;
+    font-size: min(max(3vw, 30px), 40px);
+    max-height: min(10vw, 80px);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    /*text-decoration: underline;*/
+}
+.CV-bulk {
+    max-width: 70vw;
+    min-width: 70vw;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.CV-bulk:last-child {
+    margin-bottom: 50px;
+}
+
+.CV-item {
+    width: 100%;
+}
+
+.experience-header {
+    color: #b1abab;
+    font-size: min(max(1.5vw, 20px), 25px);
+    font-weight: bold;
+}
+
+.experience-date {
+    color: #b1abab;
+    font-size: min(max(1vw, 15px), 20px);
+    font-style: italic;
+}
+
+.experience-summary {
+    color: #9ae1ff;
+}
+
+.footer {
+    margin-top: 50px;
+}
