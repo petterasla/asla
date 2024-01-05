@@ -1,14 +1,23 @@
 .contact {
-    display: flex;
     padding-top: 10vh;
 }
 .contact-card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(1, 1, 0, 0.2);
     max-width: min(50vw, 300px);
     margin: auto;
     text-align: center;
     font-family: "Devanagari MT", serif;
     background-color: white;
+    animation: fade-in 1s ease-in forwards;
+    opacity: 0;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0; /* Start with opacity 0 (fully transparent) */
+    }
+    to {
+        opacity: 1; /* End with opacity 1 (fully opaque) */
+    }
 }
 
 .contact-card img {
@@ -21,11 +30,11 @@
 
 .name {
     margin: 2vw 0 0 0;
-    font-size: 5vw;
+    font-size: min(4.5vw, 36px);
     font-weight: bold;
 }
 .title {
-    font-size: 4vw;
+    font-size: min(4vw, 30px);
     color: #606060;
     margin: 0;
 }
@@ -33,19 +42,19 @@
 .title-company {
     margin: 0;
     padding: 0;
-    font-size: 3vw;
+    font-size: min(3vw, 25px);
     color: #606060;
 }
 
 .email {
-    font-size: 2.6vw;
+    font-size: min(2.6vw, 20px);
     font-style: italic;
     margin-bottom: 0;
 }
 
 .phone {
     margin-top: 0;
-    font-size: 2.6vw;
+    font-size: min(2.6vw, 20px);
     font-style: italic;
 }
 
