@@ -10,7 +10,7 @@ const Contact = () => {
                 <p className="name">Petter F. Asla</p>
                 <p className="title">Daglig leder</p>
                 <p className="title-company">Asla Engineering AS</p>
-                <p className="email">jobb.petter.asla@gmail.com </p>
+                <p className="email">petter@asla.no</p>
                 <p className="phone">913 75 468</p>
                 <div className={"contact-logo"} >
                     <a href="#"><i className="fa fa-dribbble"></i></a>
