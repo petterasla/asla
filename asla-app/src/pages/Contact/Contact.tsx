@@ -6,7 +6,7 @@ import './contact.css'
 const Contact = () => {
     return <div className="contact">
             <div className="contact-card">
-                <img src={"Petter.png"} alt="Petter" />
+                <img src={"Petter2.jpg"} alt="Petter" />
                 <p className="name">Petter F. Asla</p>
                 <p className="title">Daglig leder</p>
                 <p className="title-company">Asla Engineering AS</p>
