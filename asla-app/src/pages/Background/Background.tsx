@@ -12,9 +12,14 @@ const Background = () => {
             Kort bakgrunn
         </div>
         <div className="about-me flex-item">
-            Født og oppvokst på Hamar, og nå har jeg jammen meg flytta tilbake til Hamar.
-            Avslappet og pragmatisk fyr. Glad i folk, teknologi, fotball og golf, men like så viktig,
-            liker å dra på jobb om morgenen for å løse verdens IT utfordringer.
+            Født og oppvokst på Hamar, og nå har jeg jammen meg flytta tilbake til Hamar. I mellomtiden ble det
+            en sivilingeniørgrad i Datateknikk fra NTNU Trondheim med ett studieår i San Diego, UCSD. Deretter
+            begynte arbeidslivet med fem år i Oslo som konsulent i Netcompany. Etter hvert som det ble barn,
+            samt venner flyttet tilbake til Hamar, var det naturlig følge etter.
+            <br></br>
+            <br></br>
+            Som person er jeg rolig, avslappet og pragmatisk. Setter integritet høyt, samt glad i folk, teknologi, fotball og golf.
+            Men like så viktig. Jeg liker å dra på jobb om morgenen for å løse verdens IT utfordringer.
         </div>
         <div className="CV-header flex-item">
             Arbeidserfaring
