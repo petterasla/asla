@@ -12,9 +12,9 @@ const Background = () => {
             Kort bakgrunn
         </div>
         <div className="about-me flex-item">
-            Født og oppvokst på Hamar, og nå har jaggu flytta tebakat tell Hamar med kjærring, unger og stasjonsvogn.
-            Jækla tell avslappa fyr. Glad i folk, teknologi, fotball og golf, men det beste er etter unga er sendt ut om morran,
-            da kan endelig dagen starte med å løse verdens IT utfordringer.
+            Født og oppvokst på Hamar, og nå har jeg jammen meg flytta tilbake til Hamar.
+            Avslappet og pragmatisk fyr. Glad i folk, teknologi, fotball og golf, men like så viktig,
+            liker å dra på jobb om morgenen for å løse verdens IT utfordringer.
         </div>
         <div className="CV-header flex-item">
             Arbeidserfaring
