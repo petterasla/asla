@@ -3,7 +3,7 @@ import './Background.css'
 const Background = () => {
     return <div className="container">
         <div>
-            <img className="flex-item" src="Petter.png" alt="Petter" />
+            <img className="flex-item" src="Petter.png" alt="Petter"/>
         </div>
         <div className="name flex-item">
             Petter Fagerlund Asla
@@ -18,39 +18,89 @@ const Background = () => {
             samt venner flyttet tilbake til Hamar, var det naturlig følge etter.
             <br></br>
             <br></br>
-            Som person er jeg rolig, avslappet og pragmatisk. Setter integritet høyt, samt glad i folk, teknologi, fotball og golf.
+            Som person er jeg rolig, avslappet og pragmatisk. Setter integritet høyt, samt glad i folk, teknologi,
+            fotball og golf.
             Men like så viktig. Jeg liker å dra på jobb om morgenen for å løse verdens IT utfordringer.
         </div>
         <div className="CV-header flex-item">
             Arbeidserfaring
         </div>
         <div className="CV-bulk flex-item">
-            <div className="experience-header CV-item">Asla Engineering AS</div>
-            <div className="experience-date CV-item">2024.01 - d.d</div>
-            <div className="experience-summary CV-item">Søknader, dynamisk innkjøpsordning, regnskap, årsavslutning - all den moroa</div>
+            <div className="experience-header CV-item">Asla Engineering AS - NorgesGruppen Data</div>
+            <div className="experience-date CV-item">2024.02 - d.d</div>
+            <div className="experience-description CV-item">
+                <ul>
+                    <li>
+                        Utvikle og vedlikeholde kjernesystemet for vare, kunde og leverandør i NorgesGruppen
+                    </li>
+                    <li>
+                        Tilpasse kjernesystemet for overgang til nytt kjernesystem
+                    </li>
+                </ul>
+            </div>
+            <div className="experience-summary CV-item">Java EE, Oracle SQL, Weblogic, Webhook, JMS, EJB, Hibernate
+            </div>
+        </div>
+        <div className="CV-bulk flex-item">
+            <div className="experience-header CV-item">Asla Engineering AS - SmartBehandling.no</div>
+            <div className="experience-date CV-item">2024.01 - 2024.02</div>
+            <div className="experience-description CV-item">
+                <ul>
+                    <li>
+                        Automatisere fakturautsending etter fullført kundebehandling gjennom en integrasjon mellom
+                        bookingsystem og regnskapssystem
+                    </li>
+                </ul>
+            </div>
+            <div className="experience-summary CV-item">Trafft bookingsystem, PowerOffice, Webhooks, OpenAPI, Github Action, Pulumi (IaC),
+                AWS (ApiGateway, Lambda, Route53, System Manager, EventBridge, IAM, CloudWatch), Python
+            </div>
         </div>
         <div className="CV-bulk flex-item">
             <div className="experience-header CV-item">Norsk Tipping</div>
             <div className="experience-date CV-item">2021.08 - 2023.12</div>
-            <div className="experience-summary CV-item">Teknisk arkitekt, backendutvikler, REST, Java/Kotlin, Spring Boot, Kafka, Jenkins,
-                Confluence, Jira, AWS, Terraform, SQL</div>
+            <div className="experience-description CV-item">
+                <ul>
+                    <li>
+                        Løsningsrakitekt og utvikler i betalingsteamet.
+                    </li>
+                    <li>
+                        Utviklet og vedlikeholdt betalingstjenester for kunder som betalingskort, Vipps og Apple Pay.
+                    </li>
+                    <li>
+                        Utvikle APIier til utenlandske spilleverandører for håndtering av betaling og premie i forbindelse med spill.
+                    </li>
+                    <li>
+                        Utvikle avstemmingsjobber mellom spillmotor og eksterne spilleverandører for å sikre korrekt
+                    </li>
+                </ul>
+            </div>
+            <div className="experience-summary CV-item">Løsningsarkitekt, backendutvikler, REST, Java/Kotlin, Spring
+                Boot, Kafka, Jenkins, Confluence, Jira, AWS, Terraform, SQL, OpenAPI
+            </div>
         </div>
         <div className="CV-bulk flex-item">
             <div className="experience-header CV-item">Netcompany - OBOS IT</div>
             <div className="experience-date CV-item">2019.08 - 2021.08</div>
-            <div className="experience-summary CV-item">Seniorkonsulent, Java/Kotlin, mikrotjenester, Jenkins, REST, SQL,
-                Confluence, Jira</div>
+            <div className="experience-summary CV-item">Seniorkonsulent, Java/Kotlin, mikrotjenester, Jenkins, REST,
+                SQL,
+                Confluence, Jira
+            </div>
         </div>
         <div className="CV-bulk flex-item">
             <div className="experience-header CV-item">Netcompany - NorgesGruppen Data</div>
             <div className="experience-date CV-item">2017.04 - 2018.12</div>
-            <div className="experience-summary CV-item">Seniorkonsulent, Java EE, Hibernate, Bamboo, Confluence, Jira, SQL,
-                WebLogic React/Redux</div>
+            <div className="experience-summary CV-item">Seniorkonsulent, Java EE, Hibernate, Bamboo, Confluence, Jira,
+                SQL,
+                WebLogic React/Redux
+            </div>
         </div>
         <div className="CV-bulk flex-item">
             <div className="experience-header CV-item">Netcompany - Kommuneforlaget</div>
             <div className="experience-date CV-item">2018.01 - 2018.05</div>
-            <div className="experience-summary CV-item">Tech lead - assisterte bachelorprosjekt med React/Redux, Spring Boot og PostgreSQL</div>
+            <div className="experience-summary CV-item">Tech lead - assisterte bachelorprosjekt med React/Redux, Spring
+                Boot og PostgreSQL
+            </div>
         </div>
         <div className="CV-bulk flex-item">
             <div className="experience-header CV-item">Netcompany - Mesta AS</div>
