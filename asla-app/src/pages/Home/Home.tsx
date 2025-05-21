@@ -1,10 +1,13 @@
 import React from "react";
 import './Home.css';
+import ResponsiveGIF from "../../components/ResponsiveGIF/ResponsiveGIF";
 
 const Home: React.FC = () => {
-    return <div className="company-logo">
-                <img src={"asla-engineering-high-resolution-logo-white-transparent.png"} alt={"Company logo"}/>
-            </div>
-}
+    return (
+        <div className="top-padding">
+            <ResponsiveGIF />
+        </div>
+    );
+};
 
 export default Home

@@ -1,0 +1,12 @@
+.logo-center-top {
+    padding-top: 3.5vh;
+    position: fixed;
+    top: 10px;
+    left: 2vh;
+    z-index: 1000; /* Make sure it's above other content if needed */
+}
+
+.logo-img {
+    max-width: 100px;
+    height: auto;
+}

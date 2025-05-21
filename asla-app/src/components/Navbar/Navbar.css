@@ -1,10 +1,11 @@
 .navBar {
-    padding-top: 5vh;
+    padding-top: 2vh;
     display: flex;
     justify-content: center; /* Horizontally center the content */
     align-items: center; /* Vertically center the content */
     font-size: 3vw;
     font-family: "Devanagari MT", serif;
+    z-index: 10;
 }
 
 .navBar a {
