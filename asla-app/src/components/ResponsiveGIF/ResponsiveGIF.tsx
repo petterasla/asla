@@ -7,7 +7,7 @@ const ResponsiveGIF: React.FC = () => {
             <div className="gif-caption">AI video (GIF) created with OpenAI Sora</div>
             <div className="gif-container">
                 <img
-                    src="/sora-ai-programmer.gif"
+                    src="/sora-ai-programmer2.gif"
                     alt="Animated gif"
                     className="responsive-gif"
                 />
