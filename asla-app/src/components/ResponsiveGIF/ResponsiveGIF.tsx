@@ -1,13 +1,18 @@
 import React from "react";
 import './ResponsiveGIF.css'
 
-const ResponsiveGIF: React.FC = () => {
+interface ResponsiveGifProps {
+    src: string;
+    header: string;
+}
+
+const ResponsiveGIF: React.FC<ResponsiveGifProps> = ({ src, header }) => {
     return (
         <div>
-            <div className="gif-caption">AI video (GIF) created with OpenAI Sora</div>
+            <div className="gif-caption">{header}</div>
             <div className="gif-container">
                 <img
-                    src="/sora-ai-programmer2.gif"
+                    src={src}
                     alt="Animated gif"
                     className="responsive-gif"
                 />
