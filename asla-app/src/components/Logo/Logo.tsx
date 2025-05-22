@@ -3,7 +3,7 @@ import './Logo.css';
 
 const Logo: React.FC = () => {
     return (
-        <div className="logo-center-top">
+        <div>
             <img
                 src="asla-engineering-high-resolution-logo-white-transparent.png"
                 alt="Company logo"

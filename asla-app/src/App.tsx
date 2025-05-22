@@ -3,14 +3,22 @@ import './App.css';
 import {Routes, Route} from 'react-router-dom';
 import Background from './pages/Background/Background';
 import Contact from './pages/Contact/Contact';
-import Navbar from './components/Navbar/Navbar';
 import Home from "./pages/Home/Home";
+import Logo from "./components/Logo/Logo";
+import TopCanvas from "./components/TopCanvas/TopCanvas";
 
 function App() {
     return (
         <div className="App">
-            <Navbar />
             <div>
+                <div className="top-bar">
+                    <div className="logo">
+                        <Logo />
+                    </div>
+                    <div className="right-button">
+                        <TopCanvas />
+                    </div>
+                </div>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/background" element={<Background/>}/>

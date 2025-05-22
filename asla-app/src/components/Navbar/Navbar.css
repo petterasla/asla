@@ -1,27 +1,8 @@
-.navBar {
-    padding-top: 2vh;
-    display: flex;
-    justify-content: center; /* Horizontally center the content */
-    align-items: center; /* Vertically center the content */
-    font-size: 3vw;
-    font-family: "Devanagari MT", serif;
-    z-index: 10;
-}
-
-.navBar a {
+.sidebar {
     color: white;
-    font-size: 3vw;
-    text-decoration: none;
 }
 
-.navBar a.active {
-    font-style: italic;
-    font-size: 3.5vw;
-}
-
-.separator {
-    font-size: 6vw;
-    color: white;
-    margin-left: 1vw;
-    margin-right: 1vw;
+a.nav-link {
+    color:white;
+    border-bottom: white solid 1px;
 }

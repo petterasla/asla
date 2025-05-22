@@ -1,3 +1,18 @@
 .App {
   height: 100vh;
 }
+
+.top-bar {
+  padding-top: 3.5vh;
+  padding-bottom: 3.5vh;
+  padding-left: 3.5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  z-index: 1000; /* Make sure it's above other content if needed */
+}
+
+.right-button {
+  padding-right: 3.5vh;
+}

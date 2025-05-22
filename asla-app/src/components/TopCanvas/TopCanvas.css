@@ -1,0 +1,19 @@
+.menu-button.btn.btn-primary {
+    border: 2px solid white;
+    background-color: transparent;
+}
+
+.menu-button.btn.btn-primary:hover {
+    color: grey;
+    border-color: grey;
+    background-color: transparent;
+}
+
+.top-canvas.offcanvas{
+    background-color: #173342;
+    color: white;
+}
+
+.right-navbar {
+    align-items: end;
+}

@@ -1,28 +1,14 @@
 import React from "react";
-import {NavLink} from 'react-router-dom'
 import './Navbar.css'
-import Logo from "../Logo/Logo";
+import Nav from 'react-bootstrap/Nav';
 
 const Navbar = () => {
     return (
-    <div>
-        <div>
-            <Logo />
-        </div>
-        <div className="navBar">
-            <NavLink to="/" className={({isActive}) => isActive ? "active" : ""}>
-                AI Prosjekter
-            </NavLink>
-            <div className="separator">|</div>
-            <NavLink to="/background" className={({isActive}) => isActive ? "active" : ""}>
-                Bakgrunn
-            </NavLink>
-            <div className="separator">|</div>
-            <NavLink to="/contact" className={({isActive}) => isActive ? "active" : ""}>
-                Kontakt
-            </NavLink>
-        </div>
-    </div>
+        <Nav defaultActiveKey="/" className="flex-column align-items-end sidebar">
+            <Nav.Link href="/">AI Prosjekter</Nav.Link>
+            <Nav.Link href="/background" >Bakgrunn</Nav.Link>
+            <Nav.Link href="contact">Kontakt</Nav.Link>
+        </Nav>
     );
 
 }
