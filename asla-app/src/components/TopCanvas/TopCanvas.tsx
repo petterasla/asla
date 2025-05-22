@@ -3,6 +3,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import './TopCanvas.css';
 import {Button} from "react-bootstrap";
 import Navbar from '../Navbar/Navbar';
+import Logo from "../Logo/Logo";
 
 function TopCanvas() {
     const [show, setShow] = useState(false);
@@ -17,7 +18,11 @@ function TopCanvas() {
             </Button>
 
             <Offcanvas show={show} onHide={handleClose} placement="top" className="top-canvas">
-                <Offcanvas.Header closeButton></Offcanvas.Header>
+                <Offcanvas.Header closeButton>
+                    <div className="logo-navbar">
+                        <Logo />
+                    </div>
+                </Offcanvas.Header>
                 <Offcanvas.Body className="right-navbar">
                     <Navbar />
                 </Offcanvas.Body>

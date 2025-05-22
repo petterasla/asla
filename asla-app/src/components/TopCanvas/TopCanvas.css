@@ -17,3 +17,8 @@
 .right-navbar {
     align-items: end;
 }
+
+.logo-navbar {
+    padding-top: 2vh;
+    padding-left: 1.5vh;
+}

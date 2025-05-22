@@ -12,9 +12,7 @@ function App() {
         <div className="App">
             <div>
                 <div className="top-bar">
-                    <div className="logo">
-                        <Logo />
-                    </div>
+                    <Logo />
                     <div className="right-button">
                         <TopCanvas />
                     </div>
