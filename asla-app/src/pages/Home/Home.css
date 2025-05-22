@@ -2,6 +2,11 @@
     padding-top: 3vh;
     padding-left: 3vh;
     padding-right: 3vh;
+    min-width: 300px;
+    max-width: 800px;
+    width: 90%;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
 }
 
 .custome-tabs .nav-link {
@@ -17,3 +22,9 @@
     font-weight: bold;
     display: flex;
     justify-content: center; /* Horizontally center the content */}
+
+video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
