@@ -8,3 +8,12 @@
     border-color: white !important;
     color: white;
 }
+
+.video-caption {
+    color: white;
+    font-size: 2vh;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+    font-weight: bold;
+    display: flex;
+    justify-content: center; /* Horizontally center the content */}

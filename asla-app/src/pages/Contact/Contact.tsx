@@ -13,8 +13,6 @@ const Contact = () => {
                 <p className="email">petter@asla.no</p>
                 <p className="phone">913 75 468</p>
                 <div className={"contact-logo"} >
-                    <a href="#"><i className="fa fa-dribbble"></i></a>
-                    {/*<a href=""><i className="fa fa-twitter"></i></a>*/}
                     <a href="https://www.linkedin.com/in/petter-fagerlund-asla-77970359/"><FontAwesomeIcon icon={faLinkedin} /></a>
                     <a href="https://www.facebook.com/petter.asla"><FontAwesomeIcon icon={faFacebook} /></a>
                 </div>
