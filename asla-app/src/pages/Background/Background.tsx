@@ -15,7 +15,7 @@ const Background = () => {
             Født og oppvokst på Hamar, og nå har jeg jammen meg flytta tilbake til Hamar. I mellomtiden ble det
             en sivilingeniørgrad i Datateknikk fra NTNU Trondheim med ett studieår i San Diego, UCSD. Deretter
             begynte arbeidslivet med fem år i Oslo som konsulent i Netcompany. Etter hvert som det ble barn,
-            samt venner flyttet tilbake til Hamar, var det naturlig følge etter.
+            samt venner flyttet tilbake til Hamar, var det naturlig å følge etter.
             <br></br>
             <br></br>
             Som person er jeg rolig, avslappet og pragmatisk. Setter integritet høyt, samt glad i folk, teknologi,
@@ -31,15 +31,15 @@ const Background = () => {
             <div className="experience-description CV-item">
                 <ul>
                     <li>
-                        Prosjekt Dovre: Tilpasse kjernesystemet for vare, kunde og leverandør i NorgesGruppen
-                        til å gå fra master av data til slave av nytt kjernesystem. Prosjektet stiller store krav til
+                        Prosjekt Dovre: Tilpasse kjernesystemet for vare, kunde, leverandør, priser og avtaler i NorgesGruppen
+                        til å gå fra master av data til slave av nytt kjernesystem (SAP). Prosjektet stiller store krav til
                         domenekunnskap, samt ferdigheter til å omstille seg raskt. Petter tiltrådte som senior utvikler,
                         med tett oppfølging mot forretning for å håndtere deres krav.
                     </li>
                 </ul>
             </div>
             <div className="experience-summary CV-item"> Azure DevOps and Pipeline, Azure Function, Azure Bicep (IaC),
-                Java EE, Oracle SQL, Weblogic, Webhook, JMS, EJB, Hibernate
+                Java EE, Oracle SQL, Weblogic, Webhook, JMS, EJB, Hibernate, Spring Boot, Logback, Bamboo, Jira, Bitbucket
             </div>
         </div>
         <div className="CV-bulk flex-item">
