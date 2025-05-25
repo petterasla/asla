@@ -9,7 +9,7 @@ const Background = () => {
             Petter Fagerlund Asla
         </div>
         <div className="title-about-me flex-item">
-            Kort bakgrunn
+            Bakgrunn
         </div>
         <div className="about-me flex-item">
             Født og oppvokst på Hamar, og nå har jeg jammen meg flytta tilbake til Hamar. I mellomtiden ble det

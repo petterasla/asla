@@ -18,8 +18,8 @@ function App() {
                     </div>
                 </div>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/background" element={<Background/>}/>
+                    <Route path="/ai-projects" element={<Home/>}/>
+                    <Route path="/" element={<Background/>}/>
                     <Route path="/contact" element={<Contact/>}/>
                 </Routes>
             </div>
