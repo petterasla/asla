@@ -10,7 +10,7 @@ import HtmlComponent from "../../components/HtmlComponent/HtmlComponent";
 const Home: React.FC = () => {
     return (
         <div className="padding">
-                <Tabs variant="tabs" defaultActiveKey="openai" className="custome-tabs">
+                <Tabs variant="tabs" defaultActiveKey="stitch" className="custome-tabs">
                     <Tab title="Google Stitch UI" eventKey="stitch">
                         <Describer items={stitchUIDescriptions} />
                         <br></br>
@@ -22,7 +22,7 @@ const Home: React.FC = () => {
                             header="OpenAI Sora: Video (GIF)"/>
                         <Describer items={openAIdescriptions} />
                     </Tab>
-                    <Tab eventKey="pictory" title="Pictory.ai" className="tab-inactive">
+                    <Tab eventKey="pictory" title="Pictory.ai" >
                         <div className="video-caption">Pictory.ai: Generated video from URL asla.no/background</div>
                         <video controls width="100%" height="auto">
                             <source src="/videos/pictory480.mp4" type="video/mp4" />
