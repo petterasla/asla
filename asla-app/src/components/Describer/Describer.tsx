@@ -17,7 +17,7 @@ const Describer: React.FC<DescriberProps> = ({ items }) => {
             {items.map((item, index) => (
                 <Accordion.Item eventKey={index.toString()} key={index}>
                     <Accordion.Header>{item.header}</Accordion.Header>
-                    <Accordion.Body>
+                    <Accordion.Body style={{visibility: 'visible'}}>
                         <ReactMarkdown>{item.body}</ReactMarkdown>
                     </Accordion.Body>
                 </Accordion.Item>
